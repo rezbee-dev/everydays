@@ -32,10 +32,15 @@ def main():
     raw_words = clean(text)
     words = extract(raw_words)
     args = sys.argv
+    
+    print("Here's the text that will be analyzed:\n")
+    print(text, "\n")
+    
     if len(args) <= 1 or not args[1] or args[1].lower() not in words:
         print("Word not found")
         return
         
-    print("Occurrences:", words[args[1].lower()])
+    print("Number of times the word '{}' appears: {}".format(args[1], words[args[1].lower()]))
+    # print("Number of times the word",args[1], "' appears:", words[args[1].lower()], "times")
         
 main()
