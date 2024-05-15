@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="styles.css">
+    <title>Temp Converter</title>
+</head>
+<body>
+    <main>
+        <form">
+            <label for="temp">Temp:</label><br>
+            <input type="number" id="temp" name="temp" value="0"><br>
+            <div class="center-h">
+                <input type="submit" value="F" onclick="onClickConvert()">
+                <input type="submit" value="C" onclick="onClickConvert()">
+            </div>
+            <p id="result" class="invisible">Temperature: Ayy lmao</p>
+          </form> 
+    </main>
+    <script>
+        function onClickConvert() {
+            let temp = document.getElementById("temp").value;
+            let toType = event.target.value
+
+            let result = document.getElementById("result");
+            result.classList.remove("invisible")
+            // (F − 32) × 5/9
+            // (C × 9/5) + 32
+            result.textContent = "Converted: " + (toType == "C" ? ((temp - 32) * (5/9)) : ((temp * (9/5)) + 32)).toFixed(2) + (toType == "C" ? " C":" F")
+        }
+    </script>
+</body>
+</html>
