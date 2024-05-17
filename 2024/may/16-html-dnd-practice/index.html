@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="styles.css">
+    <title>DND Practice</title>
+</head>
+<body>
+    <main>
+        <!-- links & images are draggable=true by default -->
+        <div draggable="true"><img src="https://img.pokemondb.net/sprites/x-y/normal/bulbasaur.png" alt="bulbasaur"></div>
+        <div draggable="true"><img src="https://img.pokemondb.net/sprites/x-y/normal/charmander.png" alt="charmander"></div>
+        <div draggable="true"><img src="https://img.pokemondb.net/sprites/x-y/normal/squirtle.png" alt="squirtle"></div>
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', e => {
+            let draggables = document.querySelectorAll("div");
+
+            let dragSource = null;
+
+            function onDragStart(e) {
+                this.style.opacity = '0.4'
+
+                dragSource = this
+
+                // to allow item to drop in new location
+                // dataTransfer must be set; usually in dragstart and drop
+                // e.dataTransfer.setData(mimeType, dataPayload) -> store elements HTML
+                e.dataTransfer.effectAllowed = "move"
+                e.dataTransfer.setData("text/html", this.innerHTML);
+            }
+    
+            function onDragEnd(e) {
+                this.style.opacity = '1'
+                // remove "over" visuals
+                draggables.forEach(d => d.classList.remove("over"))
+            }
+
+            function onDragOver(e){
+                // note, event continuously fires during dragover
+                // required because default event is that elements cannot be dropped in other elements
+                // to allow a drop, event.preventDefault() is needed for onDragOver handler
+                e.preventDefault();
+                // also prevents default; usually done from attribute-defined event listener(?)
+                return false;
+            }
+
+            function onDragEnter(e) {
+                this.classList.add('over');
+            }
+            
+            function onDragLeave(e) {
+                this.classList.remove('over');
+            }
+
+            function onDrop(e){
+                // prevent default behavior: redirect
+                e.stopPropagation();
+
+                // set source to HTML of target element
+                // check if user isn't dropping back onto the same element they dragged from
+                if(dragSource != this) {
+                    dragSource.innerHTML = this.innerHTML;
+                    this.innerHTML = e.dataTransfer.getData("text/html");
+                }
+
+                return false;
+            }
+
+            draggables.forEach(d => {
+                d.addEventListener("dragstart", onDragStart);
+                d.addEventListener("dragover", onDragOver);
+                d.addEventListener("dragenter", onDragEnter);
+                d.addEventListener("dragleave", onDragLeave);
+                d.addEventListener("dragend", onDragEnd);
+                d.addEventListener("drop", onDrop);
+            })
+        })
+    </script>
+</body>
+</html>
