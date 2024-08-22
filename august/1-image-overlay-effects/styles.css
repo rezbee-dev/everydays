@@ -10,6 +10,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100%;
+    gap: 20px;
 }
 
 .wrapper {
@@ -136,4 +137,8 @@ figure:hover .title {
     .text {
         font-size: 16px;
     }
+}
+
+.footer {
+    text-align: center;
 }
