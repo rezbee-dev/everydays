@@ -48,16 +48,15 @@ skipper.onclick = () => {
 }
 
 const setSprite = (c) => {
-    if(c % 5 == 0){
-        internalCountGen += 1
-    }
+    internalCountGen = Math.floor(c/5) % 5
+    internalCountNames = Math.floor(c/45) % 45
 
-    if(c % 45 == 0){
-        internalCountNames += 1
-    }
-
-    // for every 10 clicks: genIndex = (Math.floor(internalCountGen * 0.1)) % gen.length
     genIndex = internalCountGen % gen.length
     namesIndex = internalCountNames % names.length
     sprite.src = linkTemplate(gen[genIndex], names[namesIndex])
 }
+
+
+// internalCountGen = c < 6 ? 0 : c % 5
+// internalCountNames = c < 46 ? 0: c % 45
+// for every 10 clicks: genIndex = (Math.floor(internalCountGen * 0.1)) % gen.length
