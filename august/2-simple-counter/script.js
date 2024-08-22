@@ -43,6 +43,7 @@ clicker.onclick = () => {
 
 skipper.onclick = () => {
     count += 5
+    counter.textContent = count
     setSprite(count)
 }
 
