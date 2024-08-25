@@ -61,6 +61,11 @@ main {
     .panel:nth-of-type(5) {
         display: none;
     } 
+
+    footer {
+        position: absolute;
+        top: 1rem;
+    }
 }
 
 footer {
