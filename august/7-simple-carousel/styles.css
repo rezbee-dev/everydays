@@ -1,0 +1,151 @@
+body {
+    height: 100vh;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: #F9E4Bc;
+}
+
+.gallery {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 350px;
+}
+
+.gallery-img {
+    position: relative;
+    flex: 0.5;
+    margin: 0.5rem;
+    cursor: pointer;
+    transition: flex 0.5s ease-in;
+}
+
+.gallery-img img {
+    height: 500px;
+    width: 400px;
+    object-fit: cover;
+    border: 2px black solid;
+}
+
+.gallery-img h3 {
+    position: absolute;
+    border-bottom: 4px teal solid;
+    opacity: 0;
+    top: -2.5rem;
+}
+
+.gallery-img.active {
+    flex: 5;
+}
+
+.gallery-img.active h3 {
+    opacity: 1;
+    transition: all 0.3s ease-in 0.3s;
+}
+
+.controls {
+    display: flex;
+    /* width: 350px; */
+    width: 300px;
+    margin-top: 1rem;
+
+}
+
+.circles {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin: 0 0.5rem;
+    position: relative;
+}
+
+.circles::before {
+    content: "";
+    position: absolute;
+    background-color:coral;
+    opacity: 0.5;
+    height: 4px;
+    width: 100%;
+}
+
+#progress {
+    position: absolute;
+    background-color: teal;
+    left: 0;
+    height: 4px;
+    width: 0;
+}
+
+.circle {
+    z-index: 2;
+}
+
+.btn {
+    background: none;
+    border: 0;
+    cursor: pointer;
+    width: 4rem;
+    padding: 0;
+}
+
+.btn img {
+    margin: auto;
+}
+
+.btn:active {
+    transform: scale(0.8)
+}
+
+.btn:disabled {
+    cursor: not-allowed;
+}
+
+#left {
+}
+
+#right {
+}
+
+/* .circles::before {
+    content: url("./assets/left.svg");
+    cursor: pointer;
+}
+
+.circles::after {
+    content: url("./assets/right.svg");
+    cursor: pointer;
+} */
+
+.circle {
+    background-color: teal;
+    border-radius: 35%;
+    height: 10px;
+    width: 10px;
+}
+
+
+footer {
+    position: absolute;
+    bottom: 20px;
+}
+
+@media (min-width: 600px) {
+    .gallery {
+        width: 450px;
+    }
+
+    .gallery-img img {
+        height: 600px;
+    }
+
+    .controls {
+        width: 400px;
+    }
+}
